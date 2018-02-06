@@ -15,27 +15,31 @@ skills: 1
 key: ddbdafacdf
 ```
 
-Have a look at the plot that showed up in the viewer to the right. Which type of movie has the worst rating assigned to it?
+Suppose, you have the following data where happiness score and puppy count (how many puppies you have) are the 2 input variables and cat ownership (yes or no) is the dependent variable. Use the plot on the right, can you predict the cat ownership status of a new person who scored a happiness score of 2 when there were 4 puppies in the room using eucludian distance in 3-NN. Choose from the list below:
 
 `@instructions`
-- Adventure
-- Action
-- Animation
-- Comedy
+- this person owns a cat
+- this person does not own a cat
+- cannot say whether or not this person owns a cat 
+
 
 `@hint`
-Have a look at the plot. Which color does the point with the lowest rating have?
+Have a look at the plot. Which group will this new point be closest to?
 
 `@pre_exercise_code`
 ```{r}
-# The pre exercise code runs code to initialize the user's workspace.
-# You can use it to load packages, initialize datasets and draw a plot in the viewer
+# load libraries
+library(tidyverse)
 
-movies <- read.csv("http://s3.amazonaws.com/assets.datacamp.com/course/introduction_to_r/movies.csv")
+# load data
+happiness_data <- read_csv("../data/k-nn_simple_data.csv")
 
-library(ggplot2)
-
-ggplot(movies, aes(x = runtime, y = rating, col = genre)) + geom_point()
+# plot data
+ggplot(data = happiness_data, aes(x = puppy_count, y = happiness_score, colour = cat_owner)) +
+  geom_point(size = 2) +
+  xlab("Number of puppies in room") +
+  ylab("Happiness score (1-5)") +
+  scale_colour_discrete(name="Cat owner")
 ```
 
 `@sct`
@@ -43,8 +47,8 @@ ggplot(movies, aes(x = runtime, y = rating, col = genre)) + geom_point()
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
 msg_bad <- "That is not correct!"
-msg_success <- "Exactly! There seems to be a very bad action movie in the dataset."
-test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
+msg_success <- "Exactly! 3-NN using eucludian distance would have us predict that this person likely owns a cat!."
+test_mc(correct = 1, feedback_msgs = c(msg_success, msg_bad, msg_bad))
 ```
 
 ---
