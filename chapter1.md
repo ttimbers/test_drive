@@ -29,7 +29,8 @@ Have a look at the plot. Which group will this new point be closest to?
 `@pre_exercise_code`
 ```{r}
 # load libraries
-library(tidyverse)
+library(readr)
+library(ggplot2)
 
 # load data
 happiness_data <- read_csv("http://s3.amazonaws.com/assets.datacamp.com/production/course_6643/datasets/k-nn_simple_data.csv")
