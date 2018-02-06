@@ -32,7 +32,7 @@ Have a look at the plot. Which group will this new point be closest to?
 library(tidyverse)
 
 # load data
-happiness_data <- read_csv("../data/k-nn_simple_data.csv")
+happiness_data <- read_csv("http://s3.amazonaws.com/assets.datacamp.com/production/course_6643/datasets/k-nn_simple_data.csv")
 
 # plot data
 ggplot(data = happiness_data, aes(x = puppy_count, y = happiness_score, colour = cat_owner)) +
